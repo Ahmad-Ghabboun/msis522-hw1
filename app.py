@@ -16,7 +16,7 @@ from sklearn.metrics import confusion_matrix
 # ─────────────────────────────────────────────────────────────────────
 # Page config (must be first Streamlit call)
 # ─────────────────────────────────────────────────────────────────────
-st.set_page_config(page_title="LLM Preference Predictor", layout="wide")
+st.set_page_config(page_title="Verdikt", layout="wide")
 
 # ─────────────────────────────────────────────────────────────────────
 # Guard: require pipeline outputs
@@ -458,8 +458,8 @@ with _tcol:
 
 st.markdown(
     '<div class="gradient-header fade-in">'
-    "<h1>LLM Preference Predictor</h1>"
-    "<p>LMSYS Chatbot Arena — Human Preference Analytics Suite</p>"
+    "<h1>Verdikt</h1>"
+    "<p>LLM Response Preference Analytics</p>"
     "</div>",
     unsafe_allow_html=True,
 )
