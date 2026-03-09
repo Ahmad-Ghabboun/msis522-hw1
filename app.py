@@ -97,16 +97,9 @@ h1, h2, h3, h4 {{
   font-family: 'Syne', sans-serif !important; color: {TEXT} !important;
 }}
 
-/* ── Animated gradient header ── */
-@keyframes gradientShift {{
-  0%   {{ background-position: 0% 50%; }}
-  50%  {{ background-position: 100% 50%; }}
-  100% {{ background-position: 0% 50%; }}
-}}
+/* ── Gradient header (used in tabs) ── */
 .gradient-header {{
-  background: linear-gradient(-45deg, #35B095, #4498D2, #2B825B, #4CC9B0);
-  background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
+  background: {"#1C1C1C" if dark else "#35B095"};
   padding: 2rem 2.5rem; border-radius: 16px;
   text-align: center; margin-bottom: 1rem;
 }}
@@ -457,14 +450,6 @@ with _tcol:
         st.session_state["dark_mode"] = not st.session_state["dark_mode"]
         st.session_state["exec_animated"] = False
         st.rerun()
-
-st.markdown(
-    '<div class="gradient-header fade-in">'
-    "<h1>Verdikt</h1>"
-    "<p>LLM Response Preference Analytics</p>"
-    "</div>",
-    unsafe_allow_html=True,
-)
 
 # ─────────────────────────────────────────────────────────────────────
 # Tab bar
