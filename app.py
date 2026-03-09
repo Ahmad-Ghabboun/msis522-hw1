@@ -72,14 +72,16 @@ st.markdown(
 # Theme variables
 # ─────────────────────────────────────────────────────────────────────
 dark = st.session_state["dark_mode"]
-BG   = "#0f1117" if dark else "#ffffff"
-TEXT = "#ffffff"  if dark else "#0f1117"
-CARD = "#1e2130"  if dark else "#f0f2f6"
-MUTED = "rgba(255,255,255,0.55)" if dark else "rgba(0,0,0,0.45)"
-ACCENT  = "#4FC3F7"
-PALETTE = ["#4FC3F7", "#0077B6", "#00B4D8", "#90E0EF", "#CAF0F8"]
-TAB_INACTIVE = "#1e2130" if dark else "#e8eaed"
-GRID = "rgba(79,195,247,0.10)"
+BG     = "#1C1C1C"  if dark else "#F7F9F9"
+CARD   = "#252525"  if dark else "#FFFFFF"
+TEXT   = "#FFFFFF"  if dark else "#1A202C"
+MUTED  = "#8E8E8E"  if dark else "#A0AEC0"
+BORDER = "#2A2A2A"  if dark else "#E2E8F0"
+ACCENT = "#CFF242"  if dark else "#35B095"
+ACCENT2= "#9575CD"  if dark else "#4498D2"
+PALETTE = ["#35B095", "#4498D2", "#1D72CE", "#2B825B", "#F2B21A"]
+TAB_INACTIVE = "#1A1A1A" if dark else "#EDF7F4"
+GRID   = "rgba(255,255,255,0.06)" if dark else "rgba(0,0,0,0.06)"
 
 # ─────────────────────────────────────────────────────────────────────
 # CSS injection
@@ -87,12 +89,12 @@ GRID = "rgba(79,195,247,0.10)"
 _CSS = f"""
 <style>
 /* ── Global ── */
-.stApp {{ background-color: {BG}; }}
+.stApp {{ background-color: {BG}; --border-color: {BORDER}; }}
 body, p, li, span, .stMarkdown, div[data-testid="stMarkdownContainer"] {{
   font-family: 'Inter', sans-serif !important; color: {TEXT} !important;
 }}
 h1, h2, h3, h4 {{
-  font-family: 'Space Grotesk', sans-serif !important; color: {TEXT} !important;
+  font-family: 'Syne', sans-serif !important; color: {TEXT} !important;
 }}
 
 /* ── Animated gradient header ── */
@@ -102,14 +104,14 @@ h1, h2, h3, h4 {{
   100% {{ background-position: 0% 50%; }}
 }}
 .gradient-header {{
-  background: linear-gradient(-45deg, #0077B6, #4FC3F7, #00B4D8, #90E0EF);
+  background: linear-gradient(-45deg, #35B095, #4498D2, #2B825B, #4CC9B0);
   background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
   padding: 2rem 2.5rem; border-radius: 16px;
   text-align: center; margin-bottom: 1rem;
 }}
 .gradient-header h1 {{
-  color: white !important; font-family: 'Space Grotesk', sans-serif !important;
+  color: white !important; font-family: 'Syne', sans-serif !important;
   font-weight: 700; font-size: 2rem; margin: 0;
 }}
 .gradient-header p {{
@@ -138,11 +140,11 @@ h1, h2, h3, h4 {{
 .mc-label {{
   font-size: 0.74rem; font-weight: 600; color: {ACCENT} !important;
   text-transform: uppercase; letter-spacing: 0.08em;
-  font-family: 'Space Grotesk', sans-serif !important;
+  font-family: 'Syne', sans-serif !important;
 }}
 .mc-value {{
   font-size: 1.75rem; font-weight: 700; color: {TEXT} !important;
-  margin-top: 0.35rem; font-family: 'Space Grotesk', sans-serif !important;
+  margin-top: 0.35rem; font-family: 'Syne', sans-serif !important;
 }}
 
 /* ── Info card ── */
@@ -159,7 +161,7 @@ h1, h2, h3, h4 {{
 }}
 .synaps-card h4 {{
   color: {ACCENT} !important; margin-bottom: 0.6rem;
-  font-family: 'Space Grotesk', sans-serif !important;
+  font-family: 'Syne', sans-serif !important;
 }}
 
 /* ── Prediction card ── */
@@ -169,13 +171,13 @@ h1, h2, h3, h4 {{
   box-shadow: 0 0 28px rgba(79,195,247,0.2); margin: 1rem 0;
 }}
 .pc-label {{ font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: {ACCENT}; }}
-.pc-value {{ font-size: 1.7rem; font-weight: 700; color: {TEXT}; margin-top: 0.4rem; font-family: 'Space Grotesk', sans-serif; }}
+.pc-value {{ font-size: 1.7rem; font-weight: 700; color: {TEXT}; margin-top: 0.4rem; font-family: 'Syne', sans-serif; }}
 .pc-sub   {{ font-size: 0.85rem; color: {MUTED}; margin-top: 0.25rem; }}
 
 /* ── Verdict card ── */
 .verdict-card {{
   border-radius: 12px; padding: 1.25rem; text-align: center; margin: 0.75rem 0;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Syne', sans-serif;
 }}
 
 /* ── Custom divider ── */
@@ -196,7 +198,7 @@ h1, h2, h3, h4 {{
 }}
 button[data-baseweb="tab"] {{
   background: {TAB_INACTIVE} !important; border-radius: 50px !important;
-  color: {MUTED} !important; font-family: 'Space Grotesk', sans-serif !important;
+  color: {MUTED} !important; font-family: 'Syne', sans-serif !important;
   font-size: 13px !important; font-weight: 500 !important;
   padding: 8px 18px !important; border: none !important;
   transition: all 300ms ease !important; white-space: nowrap !important;
@@ -214,7 +216,7 @@ button[aria-selected="true"][data-baseweb="tab"] {{
 .stButton > button {{
   border-radius: 50px !important;
   background: linear-gradient(90deg, #0077B6, {ACCENT}) !important;
-  color: white !important; font-family: 'Space Grotesk', sans-serif !important;
+  color: white !important; font-family: 'Syne', sans-serif !important;
   font-weight: 600 !important; padding: 12px 32px !important;
   min-width: 180px !important; max-width: 240px !important;
   display: block !important; margin: 20px auto !important;
@@ -229,7 +231,7 @@ button[aria-selected="true"][data-baseweb="tab"] {{
 .stDownloadButton > button {{
   border-radius: 50px !important;
   background: linear-gradient(90deg, #0077B6, {ACCENT}) !important;
-  color: white !important; font-family: 'Space Grotesk', sans-serif !important;
+  color: white !important; font-family: 'Syne', sans-serif !important;
   font-weight: 600 !important; padding: 12px 32px !important;
   min-width: 180px !important; display: block !important;
   margin: 20px auto !important;
